@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Препод года</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="/css/profiles.css">
+</head>
+<body>
+    <header>
+        <h1>Лучший преподаватель Академии Шаг 2024</h1>
+        <a href="/profiles/add" class="btn btn-primary">Номинировать препода</a>
+    </header>
+
+    <table class="profile-table">
+        <thead>
+            <tr>
+                <th>Фото</th>
+                <th>ФИО</th>
+                <th>Характер</th>
+                <th>Стаж работы</th>
+                <th>Город</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="profile : ${profiles}">
+                <td><img th:src="@{${profile.avatarUrl}}" alt="Аватар" class="avatar-img"></td>
+                <td th:text="${profile.nickname}"></td>
+                <td th:text="${profile.gender}"></td>
+                <td th:text="${profile.age}"></td>
+                <td th:text="${profile.city}"></td>
+                <td>
+                    <a th:href="@{/profiles/feedback/{id}(id=${profile.id})}" class="btn btn-message">Написать отзыв</a>
+                    <a th:href="@{/profiles/delete/{id}(id=${profile.id})}" class="btn btn-dislike">Удалить из базы</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <!-- кусок джаваскрипта для показа сообщения -->
+    <script th:inline="javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        var feedbackMessage = /*[[${feedbackMessage}]]*/ '';
+        console.log('Текст фидбека:', feedbackMessage);
+        if (feedbackMessage) {
+            alert(JSON.stringify(feedbackMessage));
+        }
+    });
+    </script>
+      <div>
+        <p th:if="${feedbackMessage}" th:text="${feedbackMessage}"></p>
+        <pre th:if="${feedbackJson}" th:text="${feedbackJson}"></pre>
+    </div>
+</body>
+</html>

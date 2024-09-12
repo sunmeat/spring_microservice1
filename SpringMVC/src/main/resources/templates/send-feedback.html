@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Отправить отзыв</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="/css/feedback.css">
+</head>
+<body>
+    <header>
+        <h1>Отправить отзыв о преподавателе</h1>
+        <a href="#" onclick="history.back();" class="btn btn-back">Назад</a>
+    </header>
+
+    <main>
+        <form th:action="@{/profiles/feedback}" method="post" class="contact-form">
+            <!-- скрытое поле для передачи ID профиля -->
+            <input type="hidden" name="id" th:value="${profileId}"/>
+            
+            <div class="form-group">
+                <label for="message" class="form-label">Ваш отзыв:</label>
+                <textarea id="message" name="message" class="form-input" rows="10" cols="50" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-submit">Отправить отзыв</button>
+        </form>
+    </main>
+</body>
+</html>

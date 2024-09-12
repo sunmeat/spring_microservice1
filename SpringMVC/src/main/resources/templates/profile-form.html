@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Номинация</title>
+     <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="/css/registration.css">
+</head>
+<body>
+    <header>
+        <a href="/profiles" class="btn btn-back">Назад</a>
+        <h1 class="page-title">Номинация преподавателя</h1>
+    </header>
+
+    <form th:action="@{/profiles/add}" method="post" class="contact-form" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="avatar" class="form-label">Фотография</label>
+            <input id="avatar" type="file" name="avatar" class="form-input" />
+        </div>
+        <div class="form-group">
+            <label for="nickname" class="form-label">ФИО</label>
+            <input id="nickname" type="text" name="nickname" class="form-input" />
+        </div>
+        <div class="form-group">
+            <label for="gender" class="form-label">Характер</label>
+            <select id="gender" name="gender" class="form-input">
+                <option value="прескверный">Прескверный</option>
+                <option value="скверный">Скверный</option>
+                <option value="мерзкий">Мерзкий</option>
+                <option value="скрытный">Скрытный</option>
+                <option value="отсутствует">Отсутствует</option>
+                <option value="мягкий">Мягкий</option>
+                <option value="очень мягкий">Очень мягкий</option>
+                <option value="общительный">Общительный</option>
+                <option value="злюка">Злюка</option>
+                <option selected value="милашка">Милашка</option>
+                <option value="ужасный">Ужасный</option>
+                <option selected value="прекрасный">Прекрасный</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="age" class="form-label">Стаж работы</label>
+            <input id="age" type="number" name="age" class="form-input" />
+        </div>
+        <div class="form-group">
+            <label for="city" class="form-label">Город (филиал)</label>
+            <select id="city" name="city" class="form-input">
+                <option value="Одесса">Одесса</option>
+                <option value="Киев">Киев</option>
+                <option value="Черновцы">Черновцы</option>
+                <option value="Львов">Львов</option>
+                <option value="Николаев">Николаев</option>
+                <option value="Харьков">Харьков</option>
+                <option value="другой город">другой город</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Добавить в базу</button>
+        </div>
+    </form>
+</body>
+</html>
