@@ -13,7 +13,7 @@
 
     <main>
         <form th:action="@{/profiles/feedback}" method="post" class="contact-form">
-            <input type="hidden" name="profileId" th:value="${profileId}"/>
+            <input type="hidden" name="id" th:value="${profileId}"/>
             <div class="form-group">
                 <label for="message" class="form-label">Ваш відгук:</label>
                 <textarea id="message" name="message" class="form-input" rows="10" cols="50" required></textarea>
