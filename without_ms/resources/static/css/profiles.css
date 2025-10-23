@@ -1,0 +1,119 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    margin: 0;
+    padding: 0;
+    color: #e0e0e0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #1f1f1f; 
+    border-bottom: 4px solid #e91e63;
+}
+
+h1 {
+    color: #e91e63;
+    margin: 0;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+a {
+    text-decoration: none;
+    color: #e91e63;
+    font-weight: bold;
+    transition: color 0.3s, transform 0.3s;
+}
+
+a:hover {
+    color: #f06292;
+    text-decoration: underline;
+    transform: scale(1.05);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 8px;
+    border-radius: 12px;
+    color: #fff;
+    text-align: center;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.btn-primary {
+    background: #e91e63;
+    border: 2px solid #d81b60;
+}
+
+.btn-primary:hover {
+    background: #444; 
+    border-color: #c2185b;
+    transform: scale(1.05);
+    transition: background 0.3s;
+}
+
+.btn-edit {
+    background: #333;
+    border: 2px solid #e91e63;
+}
+
+.btn-edit:hover {
+    background: #444; 
+    border-color: #d81b60;
+    transform: scale(1.05);
+}
+
+.btn-delete {
+    background: #2c2c2c; 
+    border: 2px solid #d81b60;
+}
+
+.btn-delete:hover {
+    background: #333; 
+    border-color: #e91e63;
+    transform: scale(1.05);
+}
+
+table {
+    width: 90%;
+    margin: 40px auto;
+    border-collapse: collapse;
+    background: #1e1e1e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+thead {
+    background: linear-gradient(45deg, #d81b60, #f06292); /* Обновленный градиент розовых тонов */
+    color: #fff;
+    font-size: 1.2em;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+}
+
+td {
+    background: #2a2a2a;
+}
+
+tr:nth-child(even) {
+    background: #333;
+}
+
+.avatar-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #e91e63;
+}
