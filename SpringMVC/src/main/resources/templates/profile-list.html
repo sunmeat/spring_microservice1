@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Препод года</title>
+    <title>Викладач року - 2025</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="/css/profiles.css">
 </head>
 <body>
     <header>
-        <h1>Лучший преподаватель Академии Шаг 2024</h1>
-        <a href="/profiles/add" class="btn btn-primary">Номинировать препода</a>
+        <h1>Кращий викладач ОТУШ 2025</h1>
+        <a href="/profiles/add" class="btn btn-primary">Номінувати викладача</a>
     </header>
 
     <table class="profile-table">
         <thead>
             <tr>
                 <th>Фото</th>
-                <th>ФИО</th>
+                <th>ПІБ</th>
                 <th>Характер</th>
-                <th>Стаж работы</th>
-                <th>Город</th>
+                <th>Стаж роботи</th>
+                <th>Місто</th>
                 <th></th>
             </tr>
         </thead>
@@ -30,24 +30,24 @@
                 <td th:text="${profile.age}"></td>
                 <td th:text="${profile.city}"></td>
                 <td>
-                    <a th:href="@{/profiles/feedback/{id}(id=${profile.id})}" class="btn btn-message">Написать отзыв</a>
-                    <a th:href="@{/profiles/delete/{id}(id=${profile.id})}" class="btn btn-dislike">Удалить из базы</a>
+                    <a th:href="@{/profiles/feedback/{id}(id=${profile.id})}" class="btn btn-message">Залишити відгук</a>
+                    <a th:href="@{/profiles/delete/{id}(id=${profile.id})}" class="btn btn-dislike">Видалити з бази</a>
                 </td>
             </tr>
         </tbody>
     </table>
     
-    <!-- кусок джаваскрипта для показа сообщения -->
+    <!-- трошки JavaScript для відображення повідомлення -->
     <script th:inline="javascript">
     document.addEventListener('DOMContentLoaded', function() {
         var feedbackMessage = /*[[${feedbackMessage}]]*/ '';
-        console.log('Текст фидбека:', feedbackMessage);
+        console.log('Повідомлення з фідбеком:', feedbackMessage);
         if (feedbackMessage) {
             alert(JSON.stringify(feedbackMessage));
         }
     });
     </script>
-      <div>
+     <div>
         <p th:if="${feedbackMessage}" th:text="${feedbackMessage}"></p>
         <pre th:if="${feedbackJson}" th:text="${feedbackJson}"></pre>
     </div>
