@@ -40,7 +40,7 @@ public class ProfileController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    // путь для хранения загруженных файлов
+    // шлях до директорії для збереження завантажених файлів
     private static final String UPLOAD_DIR = "uploads/";
 
     @GetMapping
@@ -61,25 +61,21 @@ public class ProfileController {
             @RequestParam("avatar") MultipartFile avatar,
             RedirectAttributes redirectAttributes) throws IOException {
 
-        // обработка файла аватара
         if (!avatar.isEmpty()) {
-            // создание директории, если её нет
-            File uploadDir = new File(UPLOAD_DIR);
+            var uploadDir = new File(UPLOAD_DIR);
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }
 
-            // определение пути к файлу и сохранение
             String filename = System.currentTimeMillis() + "_" + StringUtils.cleanPath(avatar.getOriginalFilename());
             Path filePath = Paths.get(UPLOAD_DIR + filename);
             Files.write(filePath, avatar.getBytes());
 
-            // сохранение URL аватара
             profile.setAvatarUrl("/uploads/" + filename);
         }
 
         profileService.saveProfile(profile);
-        redirectAttributes.addFlashAttribute("message", "Profile added successfully!");
+        redirectAttributes.addFlashAttribute("message", "Профіль успішно доданий!");
         return "redirect:/profiles";
     }
 
@@ -103,25 +99,21 @@ public class ProfileController {
 
         profile.setId(id);
 
-        // обработка нового файла аватара
         if (avatar != null && !avatar.isEmpty()) {
-            // создание директории, если её нет
-            File uploadDir = new File(UPLOAD_DIR);
+            var uploadDir = new File(UPLOAD_DIR);
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }
 
-            // определение пути к файлу и сохранение
             String filename = System.currentTimeMillis() + "_" + StringUtils.cleanPath(avatar.getOriginalFilename());
             Path filePath = Paths.get(UPLOAD_DIR + filename);
             Files.write(filePath, avatar.getBytes());
 
-            // сохранение URL аватара
             profile.setAvatarUrl("/uploads/" + filename);
         }
 
         profileService.saveProfile(profile);
-        redirectAttributes.addFlashAttribute("message", "Профиль успешно сохранён!");
+        redirectAttributes.addFlashAttribute("message", "Профіль успішно оновлений!");
         return "redirect:/profiles";
     }
 
@@ -130,7 +122,6 @@ public class ProfileController {
         Optional<Profile> profileOptional = profileService.getProfileById(id);
         if (profileOptional.isPresent()) {
             Profile profile = profileOptional.get();
-            // удаление аватара, если он есть
             String avatarUrl = profile.getAvatarUrl();
             if (avatarUrl != null && !avatarUrl.isEmpty()) {
                 String filename = avatarUrl.substring(avatarUrl.lastIndexOf("/") + 1);
@@ -138,10 +129,9 @@ public class ProfileController {
                 try {
                     Files.delete(filePath);
                 } catch (IOException e) {
-                    e.printStackTrace(); // обработка ошибки удаления файла
+                    e.printStackTrace();
                 }
             }
-            // удаление профиля из базы данных
             profileService.deleteProfile(id);
         }
         return "redirect:/profiles";
@@ -182,32 +172,30 @@ public class ProfileController {
             @RequestParam(name = "message") String message,
             RedirectAttributes redirectAttributes) {
 
-        // проверка полученных параметров
-        System.out.println("Received feedback:");
-        System.out.println("id: " + id);
-        System.out.println("message: " + message);
+        System.out.println("Отриманий фідбек:");
+        System.out.println("айді: " + id);
+        System.out.println("повідомлення: " + message);
 
-        // извлечение профиля из базы данных по ID
         Optional<Profile> profileOptional = profileService.getProfileById(id);
         if (!profileOptional.isPresent()) {
-            redirectAttributes.addFlashAttribute("feedbackMessage", "Профиль не найден!");
+            redirectAttributes.addFlashAttribute("feedbackMessage", "Профіль не знайдено!");
             return "redirect:/profiles";
         }
 
         Profile profile = profileOptional.get();
 
-        // создание объекта отзыва с полными данными профиля
-        FeedbackMessage feedbackMessage = new FeedbackMessage(
+        // створення об'єкта FeedbackMessage з інформацією про профіль та текстом відгуку
+        var feedbackMessage = new FeedbackMessage(
                 profile.getId(),
                 profile.getNickname(),
                 profile.getAvatarUrl(),
                 profile.getGender(),
                 profile.getAge(),
                 profile.getCity(),
-                message // текст отзыва
+                message // текст відгуку
         );
 
-        // преобразование объекта в JSON
+        // перетворення об'єкта FeedbackMessage у JSON
         String jsonString;
         try {
             jsonString = objectMapper.writeValueAsString(feedbackMessage);
@@ -218,11 +206,11 @@ public class ProfileController {
 
         System.out.println(jsonString);
         
-        // отправка JSON-сообщения в RabbitMQ
+        // відправка JSON-повідомлення у RabbitMQ
         amqpTemplate.convertAndSend("feedbackExchange", "feedback.key", jsonString);
 
-        // установка сообщения для отображения после перенаправления
-        redirectAttributes.addFlashAttribute("feedbackMessage", "Отзыв успешно отправлен!");
+        // встановлення повідомлення про успішну відправку відгуку
+        redirectAttributes.addFlashAttribute("feedbackMessage", "Відгук успішно надіслано!");
         redirectAttributes.addFlashAttribute("feedbackJson", jsonString);
         
         return "redirect:/profiles";
