@@ -4,15 +4,14 @@ import com.sunmeat.contactlist.model.Profile;
 import com.sunmeat.contactlist.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
 /*
- сервис используется в контексте JPA и инкапсулирует логику доступа
- к данным, предоставляет методы для выполнения операций над профилями.
- это помогает разделить бизнес-логику и логику работы с базой данных,
- улучшая поддерживаемость и расширяемость кода
+сервіс використовується в контексті JPA та інкапсулює логіку доступу 
+до даних, надає методи виконання операцій над профілями. 
+це допомагає розділити бізнес-логіку та логіку роботи з базою даних, 
+покращує підтримуваність та розширюваність коду
  */
 @Service
 public class ProfileService {
