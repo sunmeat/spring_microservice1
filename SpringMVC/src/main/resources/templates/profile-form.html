@@ -1,60 +1,65 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Номинация</title>
-     <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <title>Номінація</title>
     <link rel="stylesheet" type="text/css" href="/css/registration.css">
 </head>
 <body>
     <header>
         <a href="/profiles" class="btn btn-back">Назад</a>
-        <h1 class="page-title">Номинация преподавателя</h1>
+        <h1 class="page-title">Номінація викладача</h1>
     </header>
 
     <form th:action="@{/profiles/add}" method="post" class="contact-form" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="avatar" class="form-label">Фотография</label>
+            <label for="avatar" class="form-label">Фото</label>
             <input id="avatar" type="file" name="avatar" class="form-input" />
         </div>
         <div class="form-group">
-            <label for="nickname" class="form-label">ФИО</label>
+            <label for="nickname" class="form-label">ПІБ</label>
             <input id="nickname" type="text" name="nickname" class="form-input" />
         </div>
         <div class="form-group">
             <label for="gender" class="form-label">Характер</label>
             <select id="gender" name="gender" class="form-input">
-                <option value="прескверный">Прескверный</option>
-                <option value="скверный">Скверный</option>
-                <option value="мерзкий">Мерзкий</option>
-                <option value="скрытный">Скрытный</option>
-                <option value="отсутствует">Отсутствует</option>
-                <option value="мягкий">Мягкий</option>
-                <option value="очень мягкий">Очень мягкий</option>
-                <option value="общительный">Общительный</option>
-                <option value="злюка">Злюка</option>
-                <option selected value="милашка">Милашка</option>
-                <option value="ужасный">Ужасный</option>
-                <option selected value="прекрасный">Прекрасный</option>
+                <option value="Неприємний">Неприємний</option> 
+				<option value="Агресивний">Агресивний</option> 
+				<option value="Дратівливий">Дратівливий</option> 
+				<option value="Невиразний">Невиразний</option> 
+				<option value="Апатичний">Апатичний</option> 
+				<option value="Спокійний">Спокійний</option> 
+				<option value="Чутливий">Чутливий</option> 
+				<option value="Товариський">Товариський</option> 
+				<option value="Егоїстичний">Егоїстичний</option> 
+				<option selected value="Чарівний">Чарівний</option>
+				<option value="Жвавий">Жвавий</option> 
+				<option value="Меланхолійний">Меланхолійний</option> 
+				<option value="Впевнений">Впевнений</option> 
+				<option value="Надійний">Надійний</option> 
+				<option value="Врівноважений">Врівноважений</option> 
             </select>
         </div>
         <div class="form-group">
-            <label for="age" class="form-label">Стаж работы</label>
+            <label for="age" class="form-label">Стаж роботи</label>
             <input id="age" type="number" name="age" class="form-input" />
         </div>
         <div class="form-group">
-            <label for="city" class="form-label">Город (филиал)</label>
+            <label for="city" class="form-label">Місто (філія)</label>
             <select id="city" name="city" class="form-input">
-                <option value="Одесса">Одесса</option>
-                <option value="Киев">Киев</option>
-                <option value="Черновцы">Черновцы</option>
-                <option value="Львов">Львов</option>
-                <option value="Николаев">Николаев</option>
-                <option value="Харьков">Харьков</option>
-                <option value="другой город">другой город</option>
+                <option value="Одеса">Одеса</option>
+                <option value="Київ">Київ</option>
+                <option value="Чернівці">Чернівці</option>
+                <option value="Львів">Львів</option>
+                <option value="Миколаїв">Миколаїв</option>
+                <option value="Харків">Харків</option>
+                <option value="Черкаси">Черкаси</option>
+                <option value="Ужгород">Ужгород</option>
+                <option value="Дніпро">Дніпро</option>
+                <option value="інше місто">інше місто</option>
             </select>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">Добавить в базу</button>
+            <button type="submit" class="btn btn-primary">Додати в базу</button>
         </div>
     </form>
 </body>
