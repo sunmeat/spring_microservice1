@@ -1,30 +1,35 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.3.3'
-	id 'io.spring.dependency-management' version '1.1.6'
+	id 'org.springframework.boot' version '4.0.0-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.sunmeat'
-version = '1.0.0'
+version = '0.0.1-SNAPSHOT'
+description = 'microservice1 Spring Boot project'
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(22)
+		languageVersion = JavaLanguageVersion.of(25)
 	}
 }
 
 repositories {
 	mavenCentral()
+	maven { url = 'https://repo.spring.io/snapshot' }
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.5' 
-	
-	// добавляем эту зависимость для отправки отзыва в очередь сообщений RabbitMQ
+	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	implementation 'org.mariadb.jdbc:mariadb-java-client:3.5.6' 
 	implementation 'org.springframework.boot:spring-boot-starter-amqp'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.20.0'
+	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.amqp:spring-rabbit-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
